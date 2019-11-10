@@ -30,7 +30,31 @@
 				<h2>Tagging</h2>
 
 				<!-- ############### Aufgabe1a Form1 Start -->
-				<form id="tag-form" action="/tagging" method="post"></form>
+				<form id="tag-form" action="/tagging" method="post">
+					<legend>Coordinates</legend>
+					<fieldset>
+						<label for="taggingLat">Latitude</label> 
+						<input type="number" step="0.000001" name="taggingLat" id="taggingLat" value="49.55" required><br>
+					</fieldset>
+					<fieldset>
+						<label for="taggingLon">Longitude</label> 
+						<input type="number" step="0.000001" name="taggingLon" id="taggingLon" value="8.55" required><br>
+					</fieldset>
+					<br>
+					<legend>Name and Hashtag</legend>
+					<fieldset>
+						<label for="taggingName">Name</label> 
+						<input type="text" name="taggingName" id="taggingName" value="Karlsruhe" maxlength="10" required ><br>
+					</fieldset>
+					<fieldset>
+						<label for="taggingTag">Hashtag</label> 
+						<input type="text" name="taggingTag" id="taggingTag" value="#Stadt" maxlength="11" pattern="^#(.*)"><br>
+					</fieldset>
+					<br>
+					<fieldset>
+						<input type="submit" value="Tag Place" id="taggingSubmit">
+					</fieldset>
+				</form>
 				<!-- ############### Aufgabe1a Form1 Ende -->
 
 			</section>
@@ -39,8 +63,21 @@
 				<h2>Discovery</h2>
 
 				<!-- ############### Aufgabe1a Form2 Start -->
-				<form id="filter-form" action="/discovery" method="post">Filter
+				<form id="filter-form" action="/discovery" method="post">
+					<legend>Filter</legend>
+					<fieldset>
+						<label for="discoverySearchterm">Searchterm</label> 
+						<input type="text" name="discoverySearchterm" id="discoverySearchterm" value="Search..."><br>
+					</fieldset>
+					<fieldset>
+						<input type="hidden" name="discoveryLat" id="discoveryLat" value="49.55"><br>
+						<input type="hidden" name="discoveryLon" id="discoveryLon" value="8.55"><br>
+					</fieldset>
+					<fieldset>
+						<input type="submit" value="Find" id="discoverySubmit"><br>
+					</fieldset>
 				</form>
+				<br>
 				<!-- ############### Aufgabe1a Form2 Ende -->
 
 				<div class="taglist">
@@ -60,7 +97,7 @@
 		</main>
 
 		<footer>
-			<span>2017 by LKIT</span>
+			<span>2019 by LKIT</span>
 		</footer>
 
 		<!-- Load JavaScripts
