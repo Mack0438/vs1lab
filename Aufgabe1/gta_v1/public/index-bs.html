@@ -34,25 +34,25 @@
 					<legend>Coordinates</legend>
 					<fieldset>
 						<label for="taggingLat">Latitude</label> 
-						<input type="number" step="0.000001" name="taggingLat" id="taggingLat" value="49.55" required><br>
+						<input type="number" step="0.000001" name="taggingLat" id="taggingLat" placeholder="49.55" required><br>
 					</fieldset>
 					<fieldset>
 						<label for="taggingLon">Longitude</label> 
-						<input type="number" step="0.000001" name="taggingLon" id="taggingLon" value="8.55" required><br>
+						<input type="number" step="0.000001" name="taggingLon" id="taggingLon" placeholder="8.55" required><br>
 					</fieldset>
 					<br>
 					<legend>Name and Hashtag</legend>
 					<fieldset>
 						<label for="taggingName">Name</label> 
-						<input type="text" name="taggingName" id="taggingName" value="Karlsruhe" maxlength="10" required ><br>
+						<input type="text" name="taggingName" id="taggingName" placeholder="some name" maxlength="10" required ><br>
 					</fieldset>
 					<fieldset>
 						<label for="taggingTag">Hashtag</label> 
-						<input type="text" name="taggingTag" id="taggingTag" value="#Stadt" maxlength="11" pattern="^#(.*)"><br>
+						<input type="text" name="taggingTag" id="taggingTag" placeholder="# + max. 10 letters" maxlength="11" pattern="^#(.+)"><br>
 					</fieldset>
 					<br>
 					<fieldset>
-						<input type="submit" value="Tag Place" id="taggingSubmit">
+						<input type="submit" value="submit" id="taggingSubmit">
 					</fieldset>
 				</form>
 				<!-- ############### Aufgabe1a Form1 Ende -->
@@ -67,14 +67,14 @@
 					<legend>Filter</legend>
 					<fieldset>
 						<label for="discoverySearchterm">Searchterm</label> 
-						<input type="text" name="discoverySearchterm" id="discoverySearchterm" value="Search..."><br>
+						<input type="text" name="discoverySearchterm" id="discoverySearchterm" placeholder="Search..."><br>
 					</fieldset>
 					<fieldset>
-						<input type="hidden" name="discoveryLat" id="discoveryLat" value="49.55"><br>
-						<input type="hidden" name="discoveryLon" id="discoveryLon" value="8.55"><br>
+						<input type="hidden" name="discoveryLat" id="discoveryLat"><br>
+						<input type="hidden" name="discoveryLon" id="discoveryLon"><br>
 					</fieldset>
 					<fieldset>
-						<input type="submit" value="Find" id="discoverySubmit"><br>
+						<input type="submit" value="apply" id="discoverySubmit"><br>
 					</fieldset>
 				</form>
 				<br>
