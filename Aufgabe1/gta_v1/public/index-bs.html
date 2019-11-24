@@ -11,93 +11,110 @@
 	</head>
 
 	<body>
-
 		<header class="jumbotron">
-			<div class="container">
+			<div class="container-fluid">
 				<img src="./images/location.png" width="100"
 						alt="an image of a map and location">
-				<h1>GeoTagApp</h1>
-				<nav>
-					<a href="#">About</a> | <a href="#">Help</a> | <a
-						href="/">Home</a>
-				</nav>
+				<h2>GeoTagApp
+					<small>
+						<nav>
+								<a href="#">About</a> | <a href="#">Help</a> | <a
+									href="/">Home</a>
+						</nav>
+					</small>
+				</h1>
 			</div>
 		</header>
 
-		<main class="container">
+		<main class="container-fluid">
+			<div class="row">
+				<div class="col-md-4">
+					<section class="tagging">
+						<h2>Tagging</h2>
+		
+						<!-- ############### Aufgabe1a Form1 Start -->
+						<form id="tag-form" action="/tagging" method="post">
+							<legend>Coordinates</legend>
+							<fieldset class="form-group">
+								<label for="taggingLat">Latitude</label> 
+								<input type="number" step="0.000001" name="taggingLat" id="taggingLat" placeholder="49.55" required class="form-control">
+							</fieldset>
+							<fieldset class="form-group">
+								<label for="taggingLon">Longitude</label> 
+								<input type="number" step="0.000001" name="taggingLon" id="taggingLon" placeholder="8.55" required class="form-control">
+							</fieldset>
+							<legend>Name and Hashtag</legend>
+							<fieldset class="form-group">
+								<label for="taggingName">Name</label> 
+								<input type="text" name="taggingName" id="taggingName" placeholder="some name" maxlength="10" required class="form-control">
+							</fieldset>
+							<fieldset class="form-group">
+								<label for="taggingTag">Hashtag</label> 
+								<input type="text" name="taggingTag" id="taggingTag" placeholder="# + max. 10 letters" maxlength="11" pattern="^#(.+)" class="form-control">
+							</fieldset>
 
-			<section class="tagging">
-				<h2>Tagging</h2>
+							<input type="submit" value="submit" id="taggingSubmit" class="btn btn-default">
 
-				<!-- ############### Aufgabe1a Form1 Start -->
-				<form id="tag-form" action="/tagging" method="post">
-					<legend>Coordinates</legend>
-					<fieldset>
-						<label for="taggingLat">Latitude</label> 
-						<input type="number" step="0.000001" name="taggingLat" id="taggingLat" placeholder="49.55" required><br>
-					</fieldset>
-					<fieldset>
-						<label for="taggingLon">Longitude</label> 
-						<input type="number" step="0.000001" name="taggingLon" id="taggingLon" placeholder="8.55" required><br>
-					</fieldset>
-					<br>
-					<legend>Name and Hashtag</legend>
-					<fieldset>
-						<label for="taggingName">Name</label> 
-						<input type="text" name="taggingName" id="taggingName" placeholder="some name" maxlength="10" required ><br>
-					</fieldset>
-					<fieldset>
-						<label for="taggingTag">Hashtag</label> 
-						<input type="text" name="taggingTag" id="taggingTag" placeholder="# + max. 10 letters" maxlength="11" pattern="^#(.+)"><br>
-					</fieldset>
-					<br>
-					<fieldset>
-						<input type="submit" value="submit" id="taggingSubmit">
-					</fieldset>
-				</form>
-				<!-- ############### Aufgabe1a Form1 Ende -->
-
-			</section>
-
-			<section class="discovery">
-				<h2>Discovery</h2>
-
-				<!-- ############### Aufgabe1a Form2 Start -->
-				<form id="filter-form" action="/discovery" method="post">
-					<legend>Filter</legend>
-					<fieldset>
-						<label for="discoverySearchterm">Searchterm</label> 
-						<input type="text" name="discoverySearchterm" id="discoverySearchterm" placeholder="Search..."><br>
-					</fieldset>
-					<fieldset>
-						<input type="hidden" name="discoveryLat" id="discoveryLat"><br>
-						<input type="hidden" name="discoveryLon" id="discoveryLon"><br>
-					</fieldset>
-					<fieldset>
-						<input type="submit" value="apply" id="discoverySubmit"><br>
-					</fieldset>
-				</form>
-				<br>
-				<!-- ############### Aufgabe1a Form2 Ende -->
-
-				<div class="taglist">
-					<ul id="results">
-						<li>Castle (49.01379, 8.404435) #sight</li>
-						<li>IWI (49.01379, 8.390071) #edu</li>
-					</ul>
+						</form>
+						<!-- ############### Aufgabe1a Form1 Ende -->
+			
+					</section>
 				</div>
-
-				<div class="tagmap">
-					<img id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
-					<div class="caption">Result map</div>
+					
+				<div class="col-md-8">
+					<section class="discovery">
+						<div class="row">
+							<div class="col-md-12">
+									<h2>Discovery</h2>
+		
+									<!-- ############### Aufgabe1a Form2 Start -->
+									<form id="filter-form" action="/discovery" method="post" class="form-inline">
+										<legend>Filter</legend>
+										<fieldset class="form-group">
+											<label for="discoverySearchterm">Searchterm</label> 
+											<input type="text" name="discoverySearchterm" id="discoverySearchterm" placeholder="Search..." class="form-control">
+										</fieldset>
+										<fieldset class="form-group">
+											<input type="hidden" name="discoveryLat" id="discoveryLat">
+											<input type="hidden" name="discoveryLon" id="discoveryLon">
+										</fieldset>
+			
+										<input type="submit" value="apply" id="discoverySubmit" class="btn btn-default">
+									</form>
+									<!-- ############### Aufgabe1a Form2 Ende -->
+							</div>
+						</div>
+		
+						<div class="row">
+							<div class="col-md-4">
+								<div class="taglist">
+									<ul id="results">
+										<li>Castle (49.01379, 8.404435) #sight</li>
+										<li>IWI (49.01379, 8.390071) #edu</li>
+									</ul>
+								</div>
+							</div>
+								
+							<div class="col-md-8 img-responsive">
+								<div class="tagmap">
+										<img id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
+										<div class="caption">Result map</div>
+								</div>
+							</div>
+							
+						</div>
+					</section>
 				</div>
-
-			</section>
-
+			</div>
+			
+			
 		</main>
 
 		<footer>
-			<span>2019 by LKIT</span>
+			<div class="container-fluid">
+				<span>2019 by LKIT</span>
+			</div>
+				
 		</footer>
 
 		<!-- Load JavaScripts

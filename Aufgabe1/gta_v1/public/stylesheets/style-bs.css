@@ -6,3 +6,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+header {
+  background-color: #f1f1f1;
+}
+
+footer {
+  background-color: #f1f1f1;
+}
+
+.form-inline {
+  width: auto;
+}
+
+.taglist {
+  background-color: #00B7FF;
+  color: aliceblue;
+}
+
