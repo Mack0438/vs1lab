@@ -18,8 +18,8 @@
 				<h2>GeoTagApp
 					<small>
 						<nav>
-								<a href="#">About</a> | <a href="#">Help</a> | <a
-									href="/">Home</a>
+							<a href="#">About</a> | <a href="#">Help</a> | <a
+								href="/">Home</a>
 						</nav>
 					</small>
 				</h1>
@@ -34,25 +34,28 @@
 		
 						<!-- ############### Aufgabe1a Form1 Start -->
 						<form id="tag-form" action="/tagging" method="post">
-							<legend>Enter new GeoTag</legend>
-							<fieldset class="form-group">
-								<label for="taggingLat">Latitude</label> 
-								<input type="number" step="0.000001" name="taggingLat" id="taggingLat" placeholder="49.55" required class="form-control">
-							</fieldset>
-							<fieldset class="form-group">
-								<label for="taggingLon">Longitude</label> 
-								<input type="number" step="0.000001" name="taggingLon" id="taggingLon" placeholder="8.55" required class="form-control">
-							</fieldset>
-							<fieldset class="form-group">
-								<label for="taggingName">Name</label> 
-								<input type="text" name="taggingName" id="taggingName" placeholder="some name" maxlength="10" required class="form-control">
-							</fieldset>
-							<fieldset class="form-group">
-								<label for="taggingTag">Hashtag</label> 
-								<input type="text" name="taggingTag" id="taggingTag" placeholder="# + max. 10 letters" maxlength="11" pattern="^#(.+)" class="form-control">
-							</fieldset>
+							<fieldset>
+								<legend>Enter new GeoTag</legend>
+								<div class="form-group">
+									<label for="taggingLat">Latitude</label> 
+									<input type="number" step="0.000001" name="taggingLat" id="taggingLat" placeholder="49.55" required class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="taggingLon">Longitude</label> 
+									<input type="number" step="0.000001" name="taggingLon" id="taggingLon" placeholder="8.55" required class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="taggingName">Name</label> 
+									<input type="text" name="taggingName" id="taggingName" placeholder="some name" maxlength="10" required class="form-control">
+								</div>
+								<div class="form-group">
+									<label for="taggingTag">Hashtag</label> 
+									<input type="text" name="taggingTag" id="taggingTag" placeholder="# + max. 10 letters" maxlength="11" pattern="^#(.+)" class="form-control">
+								</div>
 
-							<input type="submit" value="submit" id="taggingSubmit" class="btn btn-default">
+								<input type="submit" value="submit" id="taggingSubmit" class="btn btn-default">
+							</fieldset>
+							
 
 						</form>
 						<!-- ############### Aufgabe1a Form1 Ende -->

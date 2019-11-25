@@ -7,13 +7,13 @@ a {
   color: #00B7FF;
 }
 
-header {
+header, footer {
   background-color: #f1f1f1;
 }
 
 footer {
-  background-color: #f1f1f1;
   margin-top: 15px;
+  padding: 10px;
 }
 
 .form-inline {
@@ -25,6 +25,15 @@ footer {
   color: aliceblue;
 }
 
+/*.tagging {
+  border-style: groove;
+  border-color: #000000;
+}*/
+
+/*.discovery {
+  border: #000000;
+}*/
+
 #resultList {
   margin-top: 15px;
 }
@@ -33,3 +42,39 @@ footer {
   margin-top: 15px;
 }
 
+@media(max-width:767px){
+  #resultList {
+    margin-top: 10px;
+  }
+  
+  #map {
+    margin-top: 10px;
+  }
+}
+@media(min-width:768px){
+  #resultList {
+    margin-top: 10px;
+  }
+  
+  #map {
+    margin-top: 10px;
+  }
+}
+@media(min-width:992px){
+  #resultList {
+    margin-top: 10px;
+  }
+  
+  #map {
+    margin-top: 10px;
+  }
+}
+@media(min-width:1200px){
+  #resultList {
+    margin-top: 15px;
+  }
+  
+  #map {
+    margin-top: 15px;
+  }
+}
