@@ -13,6 +13,7 @@ header {
 
 footer {
   background-color: #f1f1f1;
+  margin-top: 15px;
 }
 
 .form-inline {
@@ -22,5 +23,13 @@ footer {
 .taglist {
   background-color: #00B7FF;
   color: aliceblue;
+}
+
+#resultList {
+  margin-top: 15px;
+}
+
+#map {
+  margin-top: 15px;
 }
 

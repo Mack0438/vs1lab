@@ -34,7 +34,7 @@
 		
 						<!-- ############### Aufgabe1a Form1 Start -->
 						<form id="tag-form" action="/tagging" method="post">
-							<legend>Coordinates</legend>
+							<legend>Enter new GeoTag</legend>
 							<fieldset class="form-group">
 								<label for="taggingLat">Latitude</label> 
 								<input type="number" step="0.000001" name="taggingLat" id="taggingLat" placeholder="49.55" required class="form-control">
@@ -43,7 +43,6 @@
 								<label for="taggingLon">Longitude</label> 
 								<input type="number" step="0.000001" name="taggingLon" id="taggingLon" placeholder="8.55" required class="form-control">
 							</fieldset>
-							<legend>Name and Hashtag</legend>
 							<fieldset class="form-group">
 								<label for="taggingName">Name</label> 
 								<input type="text" name="taggingName" id="taggingName" placeholder="some name" maxlength="10" required class="form-control">
@@ -71,7 +70,6 @@
 									<form id="filter-form" action="/discovery" method="post" class="form-inline">
 										<legend>Filter</legend>
 										<fieldset class="form-group">
-											<label for="discoverySearchterm">Searchterm</label> 
 											<input type="text" name="discoverySearchterm" id="discoverySearchterm" placeholder="Search..." class="form-control">
 										</fieldset>
 										<fieldset class="form-group">
@@ -87,7 +85,7 @@
 		
 						<div class="row">
 							<div class="col-md-4">
-								<div class="taglist">
+								<div class="taglist" id="resultList">
 									<ul id="results">
 										<li>Castle (49.01379, 8.404435) #sight</li>
 										<li>IWI (49.01379, 8.390071) #edu</li>
@@ -96,7 +94,7 @@
 							</div>
 								
 							<div class="col-md-8 img-responsive">
-								<div class="tagmap">
+								<div class="tagmap" id="map">
 										<img id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
 										<div class="caption">Result map</div>
 								</div>
