@@ -113,18 +113,19 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
         return urlString;
     };
 
-    var onsuccess = function() {
-            GEOLOCATIONAPI.getCurrentPosition(function setInput(success) {
-                var lat = getLatitude(success);
-                var lon = getLongitude(success);
-                document.getElementById("taggingLat").value = lat;
-                document.getElementById("taggingLon").value = lon;
-                document.getElementById("discoveryLat").value = lat;
-                document.getElementById("discoveryLon").value = lon;
+    var onsuccess = function(position) {
+        var lat = getLatitude(position);
+        var lon = getLongitude(position);
+        console.log("LAT: " + lat + " LON: " + lon);
 
-                var src = getLocationMapSrc(lat, lon, undefined, 17);
-                document.getElementById("result-img").src = src;
-    })};
+        document.getElementById("taggingLat").value = lat;
+        document.getElementById("taggingLon").value = lon;
+        document.getElementById("discoveryLat").value = lat;
+        document.getElementById("discoveryLon").value = lon;
+
+        var src = getLocationMapSrc(lat, lon, undefined, 17);
+        document.getElementById("result-img").src = src;
+    };
 
     var onerror = function(msg) {
         alert(msg);
@@ -137,22 +138,7 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
         readme: "Dieses Objekt enthält 'öffentliche' Teile des Moduls.",
 
         updateLocation: function() {
-            /*tryLocate(function onsuccess(){
-                GEOLOCATIONAPI.getCurrentPosition(function setInput(success) {
-                    var lat = getLatitude(success);
-                    var lon = getLongitude(success);
-                    document.getElementById("taggingLat").value = lat;
-                    document.getElementById("taggingLon").value = lon;
-                    document.getElementById("discoveryLat").value = lat;
-                    document.getElementById("discoveryLon").value = lon;
-
-                    var src = getLocationMapSrc(lat, lon, undefined, 17);
-                    document.getElementById("result-img").src = src;
-                }, function onerror(msg) {
-                    alert(msg);
-                });
-            });*/
-            tryLocate(onsuccess, onerror)
+            tryLocate(onsuccess, onerror);
         }
 
     }; // ... Ende öffentlicher Teil
@@ -164,6 +150,5 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
  * des Skripts.
  */
 $(function() {
-    //alert("Please change the script 'geotagging.js'");
     gtaLocator.updateLocation();
 });
