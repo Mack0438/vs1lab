@@ -82,7 +82,7 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
     };
 
     // Hier Google Maps API Key eintragen
-    var apiKey = "YOUR_API_KEY_HERE";
+    var apiKey = "GH8fgdjRKuCKu4eIrTM4WXJRn2bqj4LG";
 
     /**
      * Funktion erzeugt eine URL, die auf die Karte verweist.
@@ -113,6 +113,23 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
         return urlString;
     };
 
+    var onsuccess = function() {
+            GEOLOCATIONAPI.getCurrentPosition(function setInput(success) {
+                var lat = getLatitude(success);
+                var lon = getLongitude(success);
+                document.getElementById("taggingLat").value = lat;
+                document.getElementById("taggingLon").value = lon;
+                document.getElementById("discoveryLat").value = lat;
+                document.getElementById("discoveryLon").value = lon;
+
+                var src = getLocationMapSrc(lat, lon, undefined, 17);
+                document.getElementById("result-img").src = src;
+    })};
+
+    var onerror = function(msg) {
+        alert(msg);
+    };
+
     return { // Start öffentlicher Teil des Moduls ...
 
         // Public Member
@@ -120,16 +137,22 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
         readme: "Dieses Objekt enthält 'öffentliche' Teile des Moduls.",
 
         updateLocation: function() {
-            var onsuccess = {};
-            var onerror = {};
-            tryLocate(onsuccess, onerror);
+            /*tryLocate(function onsuccess(){
+                GEOLOCATIONAPI.getCurrentPosition(function setInput(success) {
+                    var lat = getLatitude(success);
+                    var lon = getLongitude(success);
+                    document.getElementById("taggingLat").value = lat;
+                    document.getElementById("taggingLon").value = lon;
+                    document.getElementById("discoveryLat").value = lat;
+                    document.getElementById("discoveryLon").value = lon;
 
-            if (onerror) {
-                alert(onerror);
-            }
-
-            document.getElementById("taggingLat").value = getLatitude(onsuccess.position);
-            document.getElementById("taggingLon").value = getLongitude(onsuccess.position);
+                    var src = getLocationMapSrc(lat, lon, undefined, 17);
+                    document.getElementById("result-img").src = src;
+                }, function onerror(msg) {
+                    alert(msg);
+                });
+            });*/
+            tryLocate(onsuccess, onerror)
         }
 
     }; // ... Ende öffentlicher Teil
