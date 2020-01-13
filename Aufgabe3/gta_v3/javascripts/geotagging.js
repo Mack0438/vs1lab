@@ -146,11 +146,11 @@ var gtaLocator = (function GtaLocator(geoLocationApi) {
 					var dataTagArray = JSON.parse(document.getElementById("result-img").getAttribute("data-tags"));
 				}
 			
-				if(document.getElementById("taggingLat").value == "" && document.getElementById("taggingLon").value == ""){
-					document.getElementById("taggingLat").value = getLatitude(position);
-					document.getElementById("taggingLon").value = getLongitude(position);
-					document.getElementById("discoveryLat").value = getLatitude(position);
-					document.getElementById("discoveryLon").value = getLongitude(position);
+				if(document.getElementById("i_lati").value == "" && document.getElementById("i_long").value == ""){
+					document.getElementById("i_lati").value = getLatitude(position);
+					document.getElementById("i_long").value = getLongitude(position);
+					document.getElementById("i_hlati").value = getLatitude(position);
+					document.getElementById("i_hlong").value = getLongitude(position);
 				}
 			
 				document.getElementById("result-img").src = getLocationMapSrc(getLatitude(position), getLongitude(position),dataTagArray, 16);

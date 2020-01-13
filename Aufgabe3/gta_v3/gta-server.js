@@ -29,14 +29,21 @@ app.set('view engine', 'ejs');
  * Teste das Ergebnis im Browser unter 'http://localhost:3000/'.
  */
 
-// TODO: CODE ERGÄNZEN
+app.use('/javascripts',express.static(__dirname + '/javascripts'));
+app.use('/stylesheets',express.static(__dirname + '/stylesheets'));
+app.use('/images',express.static(__dirname + '/images'));
 
 /**
  * Konstruktor für GeoTag Objekte.
  * GeoTag Objekte sollen min. alle Felder des 'tag-form' Formulars aufnehmen.
  */
 
-// TODO: CODE ERGÄNZEN
+function geoTagObj(name,latitude,longitude,hash){
+	this.name = name;
+	this.latitude = latitude;
+	this.longitude = longitude;
+	this.hash = hash;
+}
 
 /**
  * Modul für 'In-Memory'-Speicherung von GeoTags mit folgenden Komponenten:
@@ -47,7 +54,67 @@ app.set('view engine', 'ejs');
  * - Funktion zum Löschen eines Geo Tags.
  */
 
-// TODO: CODE ERGÄNZEN
+var GeoTag = (function(){
+	tagStack = [];
+	var isInRadius = function(lat1, long1, lat2, long2, radius) {
+		return radius >= Math.sqrt( Math.pow(lat1 - lat2, 2) 
+								+ Math.pow(long1 - long2, 2))
+	 }
+	return{
+		searchGeoRadius: function(latitude, longitude, radius){
+			geoTagResult = [];
+			for(var i = 0; i < tagStack.length; i++) {
+				if( isInRadius(latitude, longitude, tagStack[i].latitude, tagStack[i].longitude, radius) ) {
+					geoTagResult.push(new geoTagObj(tagStack[i].name, tagStack[i].latitude, tagStack[i].longitude, tagStack[i].hash));
+				}
+			}
+			return geoTagResult;
+		
+		},
+		searchGeoName: function(name) {
+			geoTagResult = [];
+			for(var i = 0; i < tagStack.length; i++) {
+				if( tagStack[i].name == name ) {
+					geoTagResult.push(new geoTagObj(tagStack[i].name,tagStack[i].latitude, tagStack[i].longitude, tagStack[i].hash));
+				}
+			}
+			return geoTagResult;	
+		},
+		delGeoTag: function(name){
+			for(var i = 0; i < tagStack.length; i++) {
+                if( tagStack[i].name == name ) {
+					tagStack.splice(i, 1);
+                 	i--;
+                 }
+             }
+		},
+		addGeoTag: function(latitude, longitude, name, hash){
+			tagStack.push(new geoTagObj(name,latitude,longitude,hash));
+		},
+		nameInTag: function(name, hash){
+			if(tagStack.length > 0){
+				for(var i = 0;i < tagStack.length; i++){
+					if(tagStack[i].name == name && tagStack[i].hash == hash){
+						return true;
+					}
+				}return false;
+			}return false;
+		},
+		//DEBUG
+		dbGeoStack: function(){
+			if(tagStack.length>0){
+				console.log("DEBUG");
+				for(var i = 0; i<tagStack.length; i++){
+					console.log(tagStack[i]);
+				}
+			}
+			
+		},
+		retFullStack: function(){
+			return tagStack;
+		}
+	};
+ })();
 
 /**
  * Route mit Pfad '/' für HTTP 'GET' Requests.
@@ -77,7 +144,19 @@ app.get('/', function(req, res) {
  * Die Objekte liegen in einem Standard Radius um die Koordinate (lat, lon).
  */
 
-// TODO: CODE ERGÄNZEN START
+app.post('/tagging', function(req, res){
+	if (!(GeoTag.nameInTag(req.body.i_name,req.body.i_hash))){
+		GeoTag.addGeoTag(req.body.i_lati, req.body.i_long, req.body.i_name, req.body.i_hash);
+		console.log("\n[Server] added new GeoTag: ");
+		console.log(req.body);
+		console.log("\n");
+	}
+	res.render('gta', {
+		taglist: GeoTag.searchGeoRadius(req.body.i_lati, req.body.i_long, 1),
+		latitude: req.body.i_lati,
+		longitude: req.body.i_long
+	});
+});
 
 /**
  * Route mit Pfad '/discovery' für HTTP 'POST' Requests.
@@ -91,7 +170,26 @@ app.get('/', function(req, res) {
  * Falls 'term' vorhanden ist, wird nach Suchwort gefiltert.
  */
 
-// TODO: CODE ERGÄNZEN
+app.post('/discovery', function(req, res){	
+	newTagList = undefined;
+	console.log(req.body);
+	if(req.body.btn_remove != undefined){
+		GeoTag.delGeoTag(req.body.i_search);
+		console.log("\n[Server] deleted entrys named [" + req.body.i_search + "]\n");
+	}else{
+		if(req.body.i_search == ""){
+			newTagList = GeoTag.retFullStack();
+		}else{
+			newTagList = GeoTag.searchGeoName(req.body.i_search);
+		}		
+		console.log("\n[Server] listing all entrys named [" + req.body.i_search + "]\n");
+	}
+	res.render('gta', {
+		taglist: newTagList,
+		latitude: "",
+		longitude: ""
+	});
+});
 
 /**
  * Setze Port und speichere in Express.
