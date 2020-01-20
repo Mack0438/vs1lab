@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>GeoTagApp</title>
+		<link rel='stylesheet' href='../stylesheets/style.css'/>
+	</head>
+
+	<body>
+
+		<header>
+			<img src="../images/location.png" width="100"
+					alt="an image of a map and location">
+			<h1>GeoTagApp</h1>
+			<nav>
+				<a href="#">About</a> | <a href="#">Help</a> | <a
+					href="/">Home</a>
+			</nav>
+		</header>
+
+		<main>
+
+			<section class="tagging">
+				<h2>Tagging</h2>
+
+				<!-- ############### Aufgabe1a Form1 Start -->
+				<form id="tag-form" action="/tagging" method="post">
+					<fieldset>
+						<legend>Enter new GeoTag</legend>
+						<label for ="i_name">Name :</label><br/>
+						<input type="text" id="i_name" name="i_name" maxlength="10" required placeholder="HSKA"/><br/>
+						
+						<label for="i_lati">Latitude :</label><br/>
+						<input type="text" id="i_lati" name="i_lati" required placeholder="49.01379" value='<%= latitude %>'/><br/>
+						<label for="i_long">Longitude :</label><br/>
+						<input type="text" id="i_long" name="i_long" required placeholder="8.390071" value='<%= longitude %>'/><br/>
+						
+						<label for="i_hash">Hashtag :</label><br/>
+						<input type="text" id="i_hash" name="i_hash" required pattern="#[A-Za-z]+" maxlength="11" placeholder="#HSKA"/><br/>
+				
+						<button id="btn-tagging" onclick="" type="button">submit</button>
+					</fieldset>
+				</form>
+				<!-- ############### Aufgabe1a Form1 Ende -->
+
+			</section>
+
+			<section class="discovery">
+				<h2>Discovery</h2>
+
+				<!-- ############### Aufgabe1a Form2 Start -->
+				<form id="filter-form" action="/discovery" method="post">
+					<fieldset>
+						<legend>Filter by System</legend>
+						<input type="text" id="i_search" placeholder="search term"/>
+						<input type="hidden" id="i_hlong"/>
+						<input type="hidden" id="i_hlati"/>
+						<button id="btn-disco-apply" onclick="" type="button">Apply</button>
+						<button id="btn-disco-remove" onclick="" type="button">Remove</button>
+					</fieldset>
+				</form>
+				<!-- ############### Aufgabe1a Form2 Ende -->
+
+				<div id="tlum">
+				<div class="taglist">
+					<ul id="results">
+						<% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
+						<li><%= gtag.name %> 
+							( <%= gtag.latitude %>,
+							<%= gtag.longitude %>) 
+							<%= gtag.hash %> </li>
+						<% }); %>
+					</ul>
+				</div>
+
+				<div class="tagmap">
+					<img id="result-img" src="./images/mapview.jpg" alt="a map with locations"/>
+					<div class="caption">Result map</div>
+				</div>
+				</div>
+
+			</section>
+
+		</main>
+
+		<footer>
+			<span>2017 by LKIT</span>
+		</footer>
+<!-- Load JavaScripts
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="./javascripts/geotagging.js"></script>
+	</body>
+</html>
