@@ -24,9 +24,15 @@ ajax.onreadystatechange = function() {
             document.getElementById("results").innerHTML += "<li>" + resJson[i].name + " ( " + resJson[i].latitude + ", " + resJson[i].longitude + " ) " + resJson[i].hash + " </li>";
         }
         // Update the Map with the last point (last point = latest entry)
-		//gtaLocator.updateLocation();
+		if(document.getElementById("i_lati").value == "" && document.getElementById("i_long").value == ""){
+			document.getElementById("i_lati").value = getLatitude(position);
+			document.getElementById("i_long").value = getLongitude(position);
+			document.getElementById("i_hlati").value = getLatitude(position);
+			document.getElementById("i_hlong").value = getLongitude(position);
+		}
+
 		document.getElementById("result-img").src = gtaLocator.getLocationMapSrc(document.getElementById("i_hlati").value, 
-			document.getElementById("i_hlong").value,resJson, 16);
+			document.getElementById("i_hlong").value, resJson, 16);
 		
     }
 };

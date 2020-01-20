@@ -93,9 +93,7 @@ var GeoTag = (function(){
 				}return geoTagResult;
 			}
 			for(var i = 0; i < tagStack.length; i++) {
-				if( tagStack[i].name == name ) {
-					geoTagResult.push(new geoTagObj(tagStack[i].id, tagStack[i].name, tagStack[i].latitude, tagStack[i].longitude, tagStack[i].hash));
-				} else if (tagStack[i].hash == name) {
+				if( tagStack[i].name == name || tagStack[i].hash == name) {
 					geoTagResult.push(new geoTagObj(tagStack[i].id, tagStack[i].name, tagStack[i].latitude, tagStack[i].longitude, tagStack[i].hash));
 				}
 			}
@@ -207,7 +205,7 @@ app.post('/geotags', function(req, res){
 		GeoTag.lastGeoTag();
 	
 		res.setHeader("Content-type", "application/json");
-		res.location("/geotags"); // /" + tagStack.length);
+		res.location("/geotags/" + tagStack.length);
 		res.statusCode = 200;
 		console.log(GeoTag.searchGeoRadius(req.body.latitude, req.body.longitude, 0.01));
 		res.send(GeoTag.searchGeoRadius(req.body.latitude, req.body.longitude, 0.01));
