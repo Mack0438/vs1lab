@@ -29,21 +29,28 @@ app.set('view engine', 'ejs');
  * Teste das Ergebnis im Browser unter 'http://localhost:3000/'.
  */
 
+//express.static(path);
 app.use('/javascripts',express.static(__dirname + '/javascripts'));
 app.use('/stylesheets',express.static(__dirname + '/stylesheets'));
 app.use('/images',express.static(__dirname + '/images'));
+//console.log(path);
+
+// TODO: CODE ERGÄNZEN
 
 /**
  * Konstruktor für GeoTag Objekte.
  * GeoTag Objekte sollen min. alle Felder des 'tag-form' Formulars aufnehmen.
  */
-
+ 
 function geoTagObj(name,latitude,longitude,hash){
 	this.name = name;
 	this.latitude = latitude;
 	this.longitude = longitude;
 	this.hash = hash;
 }
+
+
+// TODO: CODE ERGÄNZEN
 
 /**
  * Modul für 'In-Memory'-Speicherung von GeoTags mit folgenden Komponenten:
@@ -74,7 +81,7 @@ var GeoTag = (function(){
 		searchGeoName: function(name) {
 			geoTagResult = [];
 			for(var i = 0; i < tagStack.length; i++) {
-				if( tagStack[i].name == name ) {
+				if( tagStack[i].name == name || tagStack[i].hash == name) {
 					geoTagResult.push(new geoTagObj(tagStack[i].name,tagStack[i].latitude, tagStack[i].longitude, tagStack[i].hash));
 				}
 			}
@@ -84,7 +91,7 @@ var GeoTag = (function(){
 			for(var i = 0; i < tagStack.length; i++) {
                 if( tagStack[i].name == name ) {
 					tagStack.splice(i, 1);
-                 	i--;
+                 	//i--;
                  }
              }
 		},
@@ -116,6 +123,7 @@ var GeoTag = (function(){
 	};
  })();
 
+
 /**
  * Route mit Pfad '/' für HTTP 'GET' Requests.
  * (http://expressjs.com/de/4x/api.html#app.get.method)
@@ -127,9 +135,13 @@ var GeoTag = (function(){
 
 app.get('/', function(req, res) {
     res.render('gta', {
-        taglist: []
+        taglist: [],
+		latitude: "", 
+		longitude: ""
     });
 });
+
+
 
 /**
  * Route mit Pfad '/tagging' für HTTP 'POST' Requests.
@@ -143,7 +155,6 @@ app.get('/', function(req, res) {
  * Als Response wird das ejs-Template mit Geo Tag Objekten gerendert.
  * Die Objekte liegen in einem Standard Radius um die Koordinate (lat, lon).
  */
-
 app.post('/tagging', function(req, res){
 	if (!(GeoTag.nameInTag(req.body.i_name,req.body.i_hash))){
 		GeoTag.addGeoTag(req.body.i_lati, req.body.i_long, req.body.i_name, req.body.i_hash);
@@ -157,6 +168,7 @@ app.post('/tagging', function(req, res){
 		longitude: req.body.i_long
 	});
 });
+// TODO: CODE ERGÄNZEN START
 
 /**
  * Route mit Pfad '/discovery' für HTTP 'POST' Requests.
@@ -169,7 +181,6 @@ app.post('/tagging', function(req, res){
  * Die Objekte liegen in einem Standard Radius um die Koordinate (lat, lon).
  * Falls 'term' vorhanden ist, wird nach Suchwort gefiltert.
  */
-
 app.post('/discovery', function(req, res){	
 	newTagList = undefined;
 	console.log(req.body);
@@ -190,6 +201,7 @@ app.post('/discovery', function(req, res){
 		longitude: ""
 	});
 });
+// TODO: CODE ERGÄNZEN
 
 /**
  * Setze Port und speichere in Express.

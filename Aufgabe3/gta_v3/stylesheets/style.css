@@ -6,3 +6,86 @@ body {
 a {
   color: #00B7FF;
 }
+footer{
+	background:#808080;
+	padding-top: 10px;
+	width:100%;
+	color:white;
+	text-align:left;
+	
+	padding:5px;
+}
+ul{
+	padding:0;
+	margin:0;
+}
+main img{
+	box-sizing:border-box;
+	width:auto;
+	height:600px;
+	padding:5px;
+}
+header{
+	background:#808080;
+	color:white;
+	padding:10px;
+}
+main{
+	display:flex;
+	flex-flow:row;
+	
+}
+@media(max-width:1000px){
+	main{
+		display:block;
+	}
+}
+#tag-form{
+	padding:5px;
+	padding-top:0;
+}
+#tag-form label,input{
+	
+	padding:5px;
+	margin:2px;
+}
+#tag-form button{
+	width:30%;
+	padding:5px;
+	margin-top:10px;
+}
+
+#filter-form button{
+	padding:5px;
+	margin-left:5px;
+}
+#results li{
+	width:80%;
+	background:#2cb6e7;
+	padding:5px;
+	margin:5px;
+	color:white;
+}
+#tlum{
+	display:flex;
+}
+
+.tagging, .discovery{
+	
+	
+}
+.tagging{
+	flex-grow:1;
+}
+.discovery{
+	flex-grow:6
+}
+.taglist{
+	flex-grow:1;
+}
+.tagmap{
+	flex-grow:6
+}
+.tagmap .caption{
+	text-align:right;
+}
